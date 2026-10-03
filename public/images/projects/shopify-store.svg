@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Anime store concept: a storefront browser window showing a product grid">
+  <defs>
+    <linearGradient id="e-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0a16"/>
+      <stop offset="1" stop-color="#04060c"/>
+    </linearGradient>
+    <linearGradient id="e-window" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1120"/>
+      <stop offset="1" stop-color="#080b14"/>
+    </linearGradient>
+    <linearGradient id="e-accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7c6bff"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <pattern id="e-grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0v50" fill="none" stroke="#94a3b8" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+    <filter id="e-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#e-bg)"/>
+  <rect width="1600" height="1000" fill="url(#e-grid)"/>
+  <circle cx="1300" cy="240" r="300" fill="#7c6bff" opacity="0.22" filter="url(#e-blur)"/>
+  <circle cx="300" cy="800" r="250" fill="#4f7dff" opacity="0.18" filter="url(#e-blur)"/>
+
+  <g transform="translate(280 150)">
+    <rect width="1040" height="700" rx="26" fill="url(#e-window)" stroke="#94a3b8" stroke-opacity="0.24" stroke-width="3"/>
+    <path d="M0 66 h1040" stroke="#94a3b8" stroke-opacity="0.18" stroke-width="2"/>
+    <g>
+      <circle cx="34" cy="33" r="9" fill="#ff5f57"/>
+      <circle cx="66" cy="33" r="9" fill="#febc2e"/>
+      <circle cx="98" cy="33" r="9" fill="#28c840"/>
+    </g>
+    <rect x="150" y="18" width="560" height="30" rx="15" fill="#94a3b8" fill-opacity="0.1"/>
+    <text x="172" y="39" font-family="ui-monospace, Menlo, monospace" font-size="17" fill="#98a4ba">store.example / collections / anime</text>
+
+    <!-- hero strip -->
+    <rect x="34" y="96" width="972" height="120" rx="18" fill="url(#e-accent)" fill-opacity="0.16" stroke="#7c6bff" stroke-opacity="0.35"/>
+    <text x="70" y="152" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#eef2f9">New Season Collection</text>
+    <text x="70" y="192" font-family="system-ui, sans-serif" font-size="20" fill="#98a4ba">Figures · Prints · Accessories</text>
+    <rect x="820" y="140" width="150" height="44" rx="22" fill="#4f7dff"/>
+    <text x="895" y="168" text-anchor="middle" font-family="system-ui, sans-serif" font-size="19" font-weight="600" fill="#ffffff">Shop now</text>
+
+    <!-- product grid -->
+    <g transform="translate(34 250)">
+      <g>
+        <rect width="230" height="300" rx="18" fill="#0f1424" stroke="#94a3b8" stroke-opacity="0.16"/>
+        <rect x="14" y="14" width="202" height="180" rx="12" fill="#7c6bff" fill-opacity="0.16"/>
+        <circle cx="115" cy="86" r="34" fill="#7c6bff" fill-opacity="0.55"/>
+        <path d="M84 168 a31 31 0 0 1 62 0Z" fill="#7c6bff" fill-opacity="0.4"/>
+        <rect x="14" y="212" width="150" height="12" rx="6" fill="#98a4ba" fill-opacity="0.75"/>
+        <rect x="14" y="236" width="94" height="10" rx="5" fill="#98a4ba" fill-opacity="0.4"/>
+        <text x="14" y="278" font-family="ui-monospace, Menlo, monospace" font-size="22" fill="#4f7dff">49 JOD</text>
+      </g>
+      <g transform="translate(260 0)">
+        <rect width="230" height="300" rx="18" fill="#0f1424" stroke="#94a3b8" stroke-opacity="0.16"/>
+        <rect x="14" y="14" width="202" height="180" rx="12" fill="#22d3ee" fill-opacity="0.14"/>
+        <circle cx="115" cy="86" r="34" fill="#22d3ee" fill-opacity="0.5"/>
+        <path d="M84 168 a31 31 0 0 1 62 0Z" fill="#22d3ee" fill-opacity="0.35"/>
+        <rect x="14" y="212" width="168" height="12" rx="6" fill="#98a4ba" fill-opacity="0.75"/>
+        <rect x="14" y="236" width="80" height="10" rx="5" fill="#98a4ba" fill-opacity="0.4"/>
+        <text x="14" y="278" font-family="ui-monospace, Menlo, monospace" font-size="22" fill="#4f7dff">35 JOD</text>
+      </g>
+      <g transform="translate(520 0)">
+        <rect width="230" height="300" rx="18" fill="#0f1424" stroke="#94a3b8" stroke-opacity="0.16"/>
+        <rect x="14" y="14" width="202" height="180" rx="12" fill="#f472b6" fill-opacity="0.13"/>
+        <circle cx="115" cy="86" r="34" fill="#f472b6" fill-opacity="0.45"/>
+        <path d="M84 168 a31 31 0 0 1 62 0Z" fill="#f472b6" fill-opacity="0.32"/>
+        <rect x="14" y="212" width="140" height="12" rx="6" fill="#98a4ba" fill-opacity="0.75"/>
+        <rect x="14" y="236" width="102" height="10" rx="5" fill="#98a4ba" fill-opacity="0.4"/>
+        <text x="14" y="278" font-family="ui-monospace, Menlo, monospace" font-size="22" fill="#4f7dff">28 JOD</text>
+      </g>
+      <g transform="translate(780 0)">
+        <rect width="192" height="300" rx="18" fill="#0f1424" stroke="#94a3b8" stroke-opacity="0.16"/>
+        <rect x="14" y="14" width="164" height="180" rx="12" fill="#34d399" fill-opacity="0.13"/>
+        <circle cx="96" cy="86" r="34" fill="#34d399" fill-opacity="0.45"/>
+        <path d="M65 168 a31 31 0 0 1 62 0Z" fill="#34d399" fill-opacity="0.32"/>
+        <rect x="14" y="212" width="124" height="12" rx="6" fill="#98a4ba" fill-opacity="0.75"/>
+        <rect x="14" y="236" width="88" height="10" rx="5" fill="#98a4ba" fill-opacity="0.4"/>
+        <text x="14" y="278" font-family="ui-monospace, Menlo, monospace" font-size="22" fill="#4f7dff">62 JOD</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(1290 700)">
+    <circle r="52" fill="#0a0f1c" stroke="#4f7dff" stroke-opacity="0.55" stroke-width="3"/>
+    <path d="M-20 -14 h6 l6 26 h26 l6 -18 h-32" fill="none" stroke="#8aa8ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="-6" cy="22" r="5" fill="#8aa8ff"/>
+    <circle cx="16" cy="22" r="5" fill="#8aa8ff"/>
+  </g>
+</svg>

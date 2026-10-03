@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Workout Tracker concept: a phone with progress rings, workout bars and a completion checkmark">
+  <defs>
+    <linearGradient id="w-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070d14"/>
+      <stop offset="1" stop-color="#04060c"/>
+    </linearGradient>
+    <linearGradient id="w-ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="w-screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1524"/>
+      <stop offset="1" stop-color="#080d17"/>
+    </linearGradient>
+    <pattern id="w-grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0v50" fill="none" stroke="#94a3b8" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+    <filter id="w-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#w-bg)"/>
+  <rect width="1600" height="1000" fill="url(#w-grid)"/>
+  <circle cx="1240" cy="250" r="280" fill="#34d399" opacity="0.18" filter="url(#w-blur)"/>
+  <circle cx="360" cy="760" r="260" fill="#4f7dff" opacity="0.18" filter="url(#w-blur)"/>
+
+  <g transform="translate(600 120)">
+    <rect x="0" y="0" width="400" height="760" rx="52" fill="#0a0f1c" stroke="#94a3b8" stroke-opacity="0.28" stroke-width="3"/>
+    <rect x="18" y="18" width="364" height="724" rx="40" fill="url(#w-screen)" stroke="#94a3b8" stroke-opacity="0.14"/>
+    <rect x="150" y="40" width="100" height="14" rx="7" fill="#94a3b8" fill-opacity="0.25"/>
+
+    <g transform="translate(200 220)">
+      <circle r="96" fill="none" stroke="#94a3b8" stroke-opacity="0.14" stroke-width="16"/>
+      <circle r="96" fill="none" stroke="url(#w-ring)" stroke-width="16" stroke-linecap="round"
+              stroke-dasharray="420 604" transform="rotate(-90)"/>
+      <text y="-4" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="46" font-weight="700" fill="#eef2f9">72%</text>
+      <text y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" fill="#98a4ba">weekly goal</text>
+    </g>
+
+    <g transform="translate(60 380)">
+      <rect x="0" y="0" width="280" height="70" rx="16" fill="#0f1728" stroke="#94a3b8" stroke-opacity="0.16"/>
+      <circle cx="38" cy="35" r="18" fill="#4f7dff" fill-opacity="0.2" stroke="#4f7dff" stroke-opacity="0.6"/>
+      <rect x="72" y="24" width="120" height="9" rx="4.5" fill="#98a4ba" fill-opacity="0.7"/>
+      <rect x="72" y="41" width="76" height="8" rx="4" fill="#98a4ba" fill-opacity="0.35"/>
+      <rect x="230" y="26" width="34" height="18" rx="9" fill="#34d399" fill-opacity="0.25"/>
+
+      <rect x="0" y="86" width="280" height="70" rx="16" fill="#0f1728" stroke="#94a3b8" stroke-opacity="0.16"/>
+      <circle cx="38" cy="121" r="18" fill="#7c6bff" fill-opacity="0.2" stroke="#7c6bff" stroke-opacity="0.6"/>
+      <rect x="72" y="110" width="140" height="9" rx="4.5" fill="#98a4ba" fill-opacity="0.7"/>
+      <rect x="72" y="127" width="92" height="8" rx="4" fill="#98a4ba" fill-opacity="0.35"/>
+      <rect x="230" y="112" width="34" height="18" rx="9" fill="#94a3b8" fill-opacity="0.2"/>
+
+      <rect x="0" y="172" width="280" height="70" rx="16" fill="#0f1728" stroke="#94a3b8" stroke-opacity="0.16"/>
+      <circle cx="38" cy="207" r="18" fill="#22d3ee" fill-opacity="0.2" stroke="#22d3ee" stroke-opacity="0.6"/>
+      <rect x="72" y="196" width="104" height="9" rx="4.5" fill="#98a4ba" fill-opacity="0.7"/>
+      <rect x="72" y="213" width="120" height="8" rx="4" fill="#98a4ba" fill-opacity="0.35"/>
+      <rect x="230" y="198" width="34" height="18" rx="9" fill="#94a3b8" fill-opacity="0.2"/>
+    </g>
+
+    <g transform="translate(200 690)">
+      <circle r="34" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-opacity="0.7" stroke-width="2"/>
+      <path d="M-14 2 l10 11 l20 -23" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, monospace" font-size="24">
+    <rect x="180" y="330" width="330" height="140" rx="18" fill="#0a0f1c" stroke="#94a3b8" stroke-opacity="0.2"/>
+    <text x="210" y="374" fill="#98a4ba">streak</text>
+    <text x="210" y="424" font-size="44" font-weight="700" fill="#34d399">12 days</text>
+
+    <rect x="1080" y="560" width="340" height="150" rx="18" fill="#0a0f1c" stroke="#94a3b8" stroke-opacity="0.2"/>
+    <text x="1112" y="604" fill="#98a4ba">sessions logged</text>
+    <g fill="#4f7dff" fill-opacity="0.75">
+      <rect x="1112" y="650" width="26" height="40" rx="6"/>
+      <rect x="1150" y="630" width="26" height="60" rx="6"/>
+      <rect x="1188" y="660" width="26" height="30" rx="6"/>
+      <rect x="1226" y="614" width="26" height="76" rx="6"/>
+      <rect x="1264" y="642" width="26" height="48" rx="6"/>
+      <rect x="1302" y="624" width="26" height="66" rx="6"/>
+    </g>
+  </g>
+</svg>

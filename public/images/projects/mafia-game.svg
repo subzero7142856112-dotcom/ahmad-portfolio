@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Mafia social deduction game concept: role cards with symbols and a vote gauge in a dark emerald theme">
+  <defs>
+    <linearGradient id="m-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06110e"/>
+      <stop offset="1" stop-color="#04060c"/>
+    </linearGradient>
+    <linearGradient id="m-card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1a17"/>
+      <stop offset="1" stop-color="#080d14"/>
+    </linearGradient>
+    <linearGradient id="m-accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <pattern id="m-grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0v50" fill="none" stroke="#94a3b8" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+    <filter id="m-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#m-bg)"/>
+  <rect width="1600" height="1000" fill="url(#m-grid)"/>
+  <circle cx="800" cy="460" r="330" fill="#34d399" opacity="0.16" filter="url(#m-blur)"/>
+  <circle cx="260" cy="820" r="240" fill="#7c6bff" opacity="0.14" filter="url(#m-blur)"/>
+
+  <!-- three role cards -->
+  <g transform="translate(330 240) rotate(-8 160 240)">
+    <rect width="320" height="470" rx="28" fill="url(#m-card)" stroke="#34d399" stroke-opacity="0.35" stroke-width="3"/>
+    <rect x="24" y="24" width="272" height="422" rx="18" fill="none" stroke="#34d399" stroke-opacity="0.18"/>
+    <g transform="translate(160 180)">
+      <circle r="70" fill="#34d399" fill-opacity="0.12" stroke="#34d399" stroke-opacity="0.5" stroke-width="3"/>
+      <path d="M18 -34 a44 44 0 1 0 0 68 a52 52 0 0 1 0 -68Z" fill="#34d399" fill-opacity="0.8"/>
+    </g>
+    <text x="160" y="330" text-anchor="middle" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#eef2f9">NIGHT</text>
+    <text x="160" y="374" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="22" fill="#98a4ba">phase 01</text>
+    <rect x="86" y="404" width="148" height="10" rx="5" fill="#34d399" fill-opacity="0.5"/>
+  </g>
+
+  <g transform="translate(640 190)">
+    <rect width="320" height="500" rx="28" fill="url(#m-card)" stroke="#94a3b8" stroke-opacity="0.3" stroke-width="3"/>
+    <rect x="24" y="24" width="272" height="452" rx="18" fill="none" stroke="#94a3b8" stroke-opacity="0.15"/>
+    <g transform="translate(160 170)">
+      <rect x="-70" y="-70" width="140" height="140" rx="34" fill="#22d3ee" fill-opacity="0.1" stroke="#22d3ee" stroke-opacity="0.45" stroke-width="3"/>
+      <path d="M-30 -8 h60 M-30 18 h40" stroke="#22d3ee" stroke-opacity="0.85" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="-42" cy="-34" r="7" fill="#22d3ee"/>
+      <circle cx="42" cy="-34" r="7" fill="#22d3ee"/>
+    </g>
+    <text x="160" y="330" text-anchor="middle" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#eef2f9">DISCUSS</text>
+    <text x="160" y="374" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="22" fill="#98a4ba">phase 02</text>
+    <g transform="translate(60 404)">
+      <rect width="200" height="12" rx="6" fill="#94a3b8" fill-opacity="0.18"/>
+      <rect width="132" height="12" rx="6" fill="url(#m-accent)"/>
+      <rect y="30" width="200" height="12" rx="6" fill="#94a3b8" fill-opacity="0.18"/>
+      <rect y="30" width="74" height="12" rx="6" fill="#7c6bff" fill-opacity="0.8"/>
+    </g>
+  </g>
+
+  <g transform="translate(950 240) rotate(8 160 240)">
+    <rect width="320" height="470" rx="28" fill="url(#m-card)" stroke="#7c6bff" stroke-opacity="0.35" stroke-width="3"/>
+    <rect x="24" y="24" width="272" height="422" rx="18" fill="none" stroke="#7c6bff" stroke-opacity="0.18"/>
+    <g transform="translate(160 180)">
+      <circle r="70" fill="#7c6bff" fill-opacity="0.12" stroke="#7c6bff" stroke-opacity="0.5" stroke-width="3"/>
+      <path d="M-34 6 L0 -46 L34 6 Z" fill="#7c6bff" fill-opacity="0.85"/>
+      <rect x="-34" y="18" width="68" height="16" rx="8" fill="#7c6bff" fill-opacity="0.6"/>
+    </g>
+    <text x="160" y="330" text-anchor="middle" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#eef2f9">VOTE</text>
+    <text x="160" y="374" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="22" fill="#98a4ba">phase 03</text>
+    <g transform="translate(86 404)">
+      <circle cx="16" cy="6" r="14" fill="#7c6bff" fill-opacity="0.7"/>
+      <circle cx="52" cy="6" r="14" fill="#7c6bff" fill-opacity="0.5"/>
+      <circle cx="88" cy="6" r="14" fill="#94a3b8" fill-opacity="0.3"/>
+      <circle cx="124" cy="6" r="14" fill="#94a3b8" fill-opacity="0.3"/>
+    </g>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#98a4ba">
+    <text x="120" y="150" fill="#34d399" opacity="0.8">roles: configurable</text>
+    <text x="120" y="188" opacity="0.7">state: explicit machine</text>
+    <text x="1160" y="880" opacity="0.7">players alive: 7</text>
+    <text x="1160" y="918" fill="#7c6bff" opacity="0.85">decision pending…</text>
+  </g>
+</svg>
