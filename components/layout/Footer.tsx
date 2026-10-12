@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { footerLinks } from "@/data/nav";
 import { personal } from "@/data/personal";
+import { asset } from "@/lib/paths";
 import { Container } from "@/components/ui/Container";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 
@@ -13,9 +14,13 @@ export function Footer() {
         <div className="flex flex-col gap-8 py-10 lg:flex-row lg:items-center lg:justify-between lg:py-12">
           <div className="max-w-sm">
             <Link href="#home" className="inline-flex items-center gap-3">
-              <span className="grid h-9 w-9 place-items-center rounded-lg border border-primary/40 bg-gradient-to-br from-primary/25 to-violet/15 text-[13px] font-bold tracking-wider text-primary-light">
-                {personal.initials}
-              </span>
+              <img
+                src={asset("/general images/logo.png")}
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-9 rounded-lg border border-primary/40 object-cover"
+              />
               <span className="text-[15px] font-semibold tracking-tight text-fg">
                 {personal.fullName}
               </span>

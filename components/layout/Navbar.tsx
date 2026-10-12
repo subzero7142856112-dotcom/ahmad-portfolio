@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { navLinks } from "@/data/nav";
 import { personal } from "@/data/personal";
+import { asset } from "@/lib/paths";
 import { useActiveSection, useLockBodyScroll, useScrolled, useReducedMotion } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
@@ -79,9 +80,13 @@ export function Navbar() {
               className="group flex items-center gap-3"
               aria-label={`${personal.fullName} — home`}
             >
-              <span className="grid h-9 w-9 place-items-center rounded-lg border border-primary/40 bg-gradient-to-br from-primary/25 to-violet/15 text-[13px] font-bold tracking-wider text-primary-light transition-all duration-300 group-hover:border-primary/70 group-hover:shadow-glow">
-                {personal.initials}
-              </span>
+              <img
+                src={asset("/general images/logo.png")}
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-9 rounded-lg border border-primary/40 object-cover transition-all duration-300 group-hover:border-primary/70 group-hover:shadow-glow"
+              />
               <span className="hidden text-[14px] font-semibold tracking-tight text-fg sm:block">
                 {personal.fullName}
               </span>

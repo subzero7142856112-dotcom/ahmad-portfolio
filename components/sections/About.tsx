@@ -1,5 +1,6 @@
 import { personal } from "@/data/personal";
 import { education } from "@/data/education";
+import { asset } from "@/lib/paths";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -70,9 +71,13 @@ export function About() {
                   aria-hidden="true"
                 />
                 <div className="relative flex items-end justify-between gap-4">
-                  <span className="grid h-20 w-20 place-items-center rounded-2xl border border-white/15 bg-ink-deep/70 font-display text-2xl font-bold text-primary-light shadow-glow">
-                    {personal.initials}
-                  </span>
+                  <img
+                    src={asset("/general images/logo.png")}
+                    alt=""
+                    width={80}
+                    height={80}
+                    className="h-20 w-20 rounded-2xl border border-white/15 object-cover shadow-glow"
+                  />
                   <span className="rounded-lg border border-white/15 bg-ink-deep/60 px-3 py-1.5 font-mono text-2xs text-fg-muted">
                     {personal.location}
                   </span>
