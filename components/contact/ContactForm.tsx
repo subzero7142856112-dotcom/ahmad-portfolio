@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { personal } from "@/data/personal";
 import { Button } from "@/components/ui/Button";
-import { IconMail, IconSend } from "@/components/icons";
+import { IconCheck, IconLoader, IconSend } from "@/components/icons";
 
 interface Errors {
   name?: string;
@@ -13,6 +13,8 @@ interface Errors {
 
 const LIMITS = { name: 100, email: 200, message: 2000 };
 const mailtoHref = `mailto:${personal.email}`;
+
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 function validate(fields: { name: string; email: string; message: string }) {
   const errors: Errors = {};
@@ -36,58 +38,87 @@ function validate(fields: { name: string; email: string; message: string }) {
 export function ContactForm() {
   const [values, setValues] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState<Errors>({});
-  const [opened, setOpened] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [serverMessage, setServerMessage] = useState<string | null>(null);
 
   const update = (field: keyof typeof values, value: string) => {
     setValues((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: undefined }));
   };
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const found = validate(values);
     setErrors(found);
+    setServerMessage(null);
 
-    if (Object.keys(found).length > 0) return;
+    if (Object.keys(found).length > 0) {
+      setStatus("idle");
+      return;
+    }
 
-    // Static hosting has no server endpoint — hand the drafted message to the
-    // visitor's email app so delivery stays in their hands.
-    const subject = encodeURIComponent(`Portfolio message from ${values.name.trim()}`);
-    const body = encodeURIComponent(
-      `${values.message.trim()}\n\n— ${values.name.trim()}\n${values.email.trim()}`,
-    );
-    window.location.href = `mailto:${personal.email}?subject=${subject}&body=${body}`;
-    setOpened(true);
+    if (!personal.web3FormsAccessKey) {
+      setStatus("error");
+      setServerMessage("The contact form is not configured yet.");
+      return;
+    }
+
+    setStatus("loading");
+
+    try {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: personal.web3FormsAccessKey,
+          subject: `Portfolio message from ${values.name.trim()}`,
+          name: values.name.trim(),
+          email: values.email.trim(),
+          message: values.message.trim(),
+          from_name: "Ahmad Al-Zawahrah Portfolio",
+          botcheck: "",
+        }),
+      });
+
+      const payload = (await response.json().catch(() => ({}))) as {
+        success?: boolean;
+        message?: string;
+      };
+
+      if (!response.ok || !payload.success) {
+        setStatus("error");
+        setServerMessage(
+          payload.message ?? "The message could not be sent right now. Please try again or email me directly.",
+        );
+        return;
+      }
+
+      setStatus("success");
+      setValues({ name: "", email: "", message: "" });
+    } catch {
+      setStatus("error");
+      setServerMessage("Network error — please email me directly if this keeps happening.");
+    }
   }
 
-  if (opened) {
+  if (status === "success") {
     return (
       <div className="flex h-full min-h-[380px] flex-col items-center justify-center rounded-2xl border border-success/30 bg-success/[0.06] p-8 text-center">
         <span className="grid h-14 w-14 place-items-center rounded-full border border-success/40 bg-success/15 text-success">
-          <IconMail className="h-6 w-6" />
+          <IconCheck className="h-7 w-7" />
         </span>
-        <h3 className="mt-5 text-xl font-semibold">Email draft ready</h3>
+        <h3 className="mt-5 text-xl font-semibold">Message sent</h3>
         <p className="mt-2 max-w-xs text-[14px] leading-relaxed text-fg-muted">
-          Your email app should have opened with the message filled in — just press Send to finish.
+          Thanks for reaching out — I’ll get back to you as soon as I can.
         </p>
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => {
-              setOpened(false);
-              setValues({ name: "", email: "", message: "" });
-            }}
-          >
-            Write another message
-          </Button>
-        </div>
-        <a
-          href={mailtoHref}
-          className="mt-3 text-[13px] text-primary-light hover:text-white"
+        <Button
+          variant="ghost"
+          size="sm"
+          className="mt-6"
+          onClick={() => setStatus("idle")}
         >
-          Or email {personal.email} directly
-        </a>
+          Send another message
+        </Button>
       </div>
     );
   }
@@ -180,14 +211,36 @@ export function ContactForm() {
         ) : null}
       </div>
 
+      {/* Web3Forms honeypot — spam bots fill it, humans never see it. */}
+      <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
+
+      {status === "error" ? (
+        <div
+          role="alert"
+          className="rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-[13px] leading-relaxed text-red-300"
+        >
+          {serverMessage}
+          <a href={mailtoHref} className="ml-1 font-semibold underline underline-offset-2">
+            Email me directly
+          </a>
+        </div>
+      ) : null}
+
       <Button
         type="submit"
         variant="primary"
         className="w-full"
-        icon={<IconSend className="h-4 w-4" />}
+        disabled={status === "loading"}
+        icon={
+          status === "loading" ? (
+            <IconLoader className="h-4 w-4" />
+          ) : (
+            <IconSend className="h-4 w-4" />
+          )
+        }
         iconPosition="right"
       >
-        Send Message
+        {status === "loading" ? "Sending…" : "Send Message"}
       </Button>
 
       <p className="text-center text-[12px] text-fg-dim">

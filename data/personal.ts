@@ -23,6 +23,12 @@ export const personal = {
     "I enjoy turning ideas into practical solutions, whether that means machine learning models, secure systems, mobile apps, or modern web experiences.",
   location: "Amman, Jordan",
   email: "zawahrahceo@gmail.com",
+  /**
+   * Web3Forms access key — safe to expose in the client bundle (the service
+   * is designed for it; submissions route to `email` above).
+   * Get one free at https://web3forms.com
+   */
+  web3FormsAccessKey: "aed043b7-08ec-42df-88eb-8b627ba6a906",
   /** Drop the real PDF at this path (see /public/cv/README.md). */
   cvPath: asset("/cv/Ahmad-Al-Zawahrah-CV.pdf"),
   degree: "B.Sc. in Computer Engineering",
