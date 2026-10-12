@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { FlowStage } from "@/data/projects";
 import { IconArrowRight } from "@/components/icons";
 
@@ -5,7 +6,10 @@ function Stage({ stage }: { stage: FlowStage }) {
   return (
     <div
       className={[
-        "min-w-0 flex-1 rounded-xl border p-4 transition-colors duration-300",
+        // Mobile: full-width column. Desktop: a readable ~176–220px lane that
+        // grows with available space but never shrinks into letter-stacking.
+        "flex h-full w-full flex-col rounded-xl border p-4 transition-colors duration-300",
+        "md:w-auto md:max-w-[220px] md:[flex:1_0_176px]",
         stage.emphasis
           ? "border-primary/45 bg-primary/[0.1] shadow-[0_0_0_1px_rgba(79,125,255,0.18)]"
           : "border-line bg-ink-deep/60",
@@ -13,7 +17,7 @@ function Stage({ stage }: { stage: FlowStage }) {
     >
       <p
         className={[
-          "break-words text-[13.5px] font-semibold",
+          "leading-snug text-[13.5px] font-semibold",
           stage.emphasis ? "text-white" : "text-fg",
         ].join(" ")}
       >
@@ -25,7 +29,7 @@ function Stage({ stage }: { stage: FlowStage }) {
             <li
               key={item}
               className={[
-                "break-words rounded-md border px-2 py-1.5 text-center font-mono text-2xs",
+                "break-words rounded-md border px-2.5 py-1.5 text-left leading-snug font-mono text-2xs",
                 stage.emphasis
                   ? "border-white/10 bg-white/[0.05] text-fg-muted"
                   : "border-line bg-white/[0.02] text-fg-dim",
@@ -43,7 +47,7 @@ function Stage({ stage }: { stage: FlowStage }) {
 function Arrow({ vertical = false }: { vertical?: boolean }) {
   return (
     <span
-      className="grid shrink-0 place-items-center text-fg-dim"
+      className="grid shrink-0 place-items-center self-center text-fg-dim"
       aria-hidden="true"
       style={vertical ? { transform: "rotate(90deg)" } : undefined}
     >
@@ -59,27 +63,24 @@ export function ArchitectureFlow({ stages }: { stages: FlowStage[] }) {
     <div className="card p-5 sm:p-6">
       <p className="sr-only">System architecture flow</p>
 
-      {/* Horizontal flow on larger screens */}
-      <div className="no-scrollbar hidden items-stretch gap-2 overflow-x-auto md:flex">
+      {/* Horizontal pipeline — stages keep a minimum readable width, so long
+          flows scroll sideways instead of crushing words. */}
+      <div className="hidden items-stretch gap-2 overflow-x-auto pb-2 md:flex">
         {stages.map((stage, index) => (
-          <div key={stage.label} className="flex min-w-0 flex-1 items-stretch gap-2">
-            {index > 0 ? (
-              <span className="grid place-items-center text-fg-dim" aria-hidden="true">
-                <IconArrowRight className="h-4 w-4" />
-              </span>
-            ) : null}
+          <Fragment key={stage.label}>
+            {index > 0 ? <Arrow /> : null}
             <Stage stage={stage} />
-          </div>
+          </Fragment>
         ))}
       </div>
 
       {/* Vertical flow on small screens */}
       <div className="flex flex-col gap-2 md:hidden">
         {stages.map((stage, index) => (
-          <div key={stage.label} className="flex min-w-0 flex-col gap-2">
+          <Fragment key={stage.label}>
             <Stage stage={stage} />
             {index < stages.length - 1 ? <Arrow vertical /> : null}
-          </div>
+          </Fragment>
         ))}
       </div>
     </div>
