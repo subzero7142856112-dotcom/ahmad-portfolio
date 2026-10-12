@@ -9,16 +9,13 @@ export function Stats() {
     <section aria-label="Key statistics" className="relative pb-6 md:pb-10">
       <Container>
         <Reveal className="card overflow-hidden">
-          <dl className="grid grid-cols-2 sm:grid-cols-4">
+          <dl className="grid grid-cols-3">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
                 className={cn(
-                  "px-5 py-6 text-center sm:px-6 sm:py-7",
-                  index % 2 === 1 && "border-l border-line",
-                  index < 2 && "border-b border-line sm:border-b-0",
-                  "sm:border-l sm:border-line",
-                  index === 0 && "sm:border-l-0",
+                  "px-4 py-6 text-center sm:px-6 sm:py-7",
+                  index > 0 && "border-l border-line",
                 )}
               >
                 <dt className="sr-only">{stat.label}</dt>
