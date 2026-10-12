@@ -29,8 +29,8 @@ export const personal = {
    * Get one free at https://web3forms.com
    */
   web3FormsAccessKey: "aed043b7-08ec-42df-88eb-8b627ba6a906",
-  /** Drop the real PDF at this path (see /public/cv/README.md). */
-  cvPath: asset("/cv/Ahmad-Al-Zawahrah-CV.pdf"),
+  /** Served from /public/files. */
+  cvPath: asset("/files/AhmadZawahrah.pdf"),
   degree: "B.Sc. in Computer Engineering",
   university: "The Hashemite University",
 } as const;
