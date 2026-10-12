@@ -17,6 +17,5 @@ export interface Stat {
 export const stats: Stat[] = [
   { value: 8, suffix: "+", label: "Major Projects", accent: true },
   { value: 1, suffix: "+", label: "Years Experience" },
-  { value: null, text: "AI / ML", label: "Specialization", accent: true },
   { value: 16, suffix: "+", label: "Technologies" },
 ];
