@@ -9,8 +9,8 @@ export const personal = {
   lastName: "Al-Zawahrah",
   fullName: "Ahmad Al-Zawahrah",
   initials: "AZ",
-  role: "AI Engineer & Software Developer",
-  headline: ["AI Engineer", "& Software Developer"],
+  role: "Support, Networking & Software Developer",
+  headline: ["Support, Networking", "& Software Developer"],
   availability: "Available for opportunities",
   tagline: "Building intelligent systems and modern digital experiences.",
   heroDescription:
@@ -39,11 +39,12 @@ export const site = {
   name: `${personal.fullName} — Portfolio`,
   title: `${personal.fullName} | ${personal.role}`,
   description:
-    "Portfolio of Ahmad Al-Zawahrah, an AI Engineer & Software Developer based in Amman, Jordan. Projects in machine learning, NLP, cybersecurity, web and mobile development.",
+    "Portfolio of Ahmad Al-Zawahrah, a Support, Networking & Software Developer based in Amman, Jordan. Projects in machine learning, NLP, cybersecurity, web and mobile development.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   keywords: [
     "Ahmad Al-Zawahrah",
-    "AI Engineer",
+    "IT Support",
+    "Networking",
     "Software Developer",
     "Machine Learning",
     "NLP",
