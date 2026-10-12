@@ -15,11 +15,11 @@ export function Footer() {
           <div className="max-w-sm">
             <Link href="#home" className="inline-flex items-center gap-3">
               <img
-                src={asset("/general images/logo.png")}
+                src={`${asset("/general images/logo.png")}?v=2`}
                 alt=""
                 width={36}
                 height={36}
-                className="h-9 w-9 rounded-lg border border-primary/40 object-cover"
+                className="h-9 w-9 rounded-lg border border-primary/40 object-contain"
               />
               <span className="text-[15px] font-semibold tracking-tight text-fg">
                 {personal.fullName}

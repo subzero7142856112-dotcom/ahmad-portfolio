@@ -72,11 +72,11 @@ export function About() {
                 />
                 <div className="relative flex items-end justify-between gap-4">
                   <img
-                    src={asset("/general images/logo.png")}
+                    src={`${asset("/general images/logo.png")}?v=2`}
                     alt=""
                     width={80}
                     height={80}
-                    className="h-20 w-20 rounded-2xl border border-white/15 object-cover shadow-glow"
+                    className="h-20 w-20 rounded-2xl border border-white/15 object-contain shadow-glow"
                   />
                   <span className="rounded-lg border border-white/15 bg-ink-deep/60 px-3 py-1.5 font-mono text-2xs text-fg-muted">
                     {personal.location}

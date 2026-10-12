@@ -81,11 +81,11 @@ export function Navbar() {
               aria-label={`${personal.fullName} — home`}
             >
               <img
-                src={asset("/general images/logo.png")}
+                src={`${asset("/general images/logo.png")}?v=2`}
                 alt=""
                 width={36}
                 height={36}
-                className="h-9 w-9 rounded-lg border border-primary/40 object-cover transition-all duration-300 group-hover:border-primary/70 group-hover:shadow-glow"
+                className="h-9 w-9 rounded-lg border border-primary/40 object-contain transition-all duration-300 group-hover:border-primary/70 group-hover:shadow-glow"
               />
               <span className="hidden text-[14px] font-semibold tracking-tight text-fg sm:block">
                 {personal.fullName}
