@@ -6,14 +6,15 @@ const INTERACTIVE_SELECTOR =
   "a, button, [role='button'], [role='link'], [role='tab'], [role='menuitem'], input, textarea, select, label, summary, [data-cursor-hover]";
 
 /**
- * Custom cursor: a tight primary-blue dot plus a slower trailing ring.
- * Only activates on fine-pointer devices with no reduced-motion preference;
- * otherwise the native cursor is left untouched.
+ * Custom cursor: a soft halo and a slowly rotating gradient ring trailing
+ * behind a precise white core dot. Only activates on fine-pointer devices
+ * with no reduced-motion preference; otherwise the native cursor is kept.
  */
 export function CursorFollower() {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const dotRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine)");
@@ -21,9 +22,10 @@ export function CursorFollower() {
     if (!finePointer.matches || reducedMotion.matches) return;
 
     const wrap = wrapRef.current;
-    const dot = dotRef.current;
+    const glow = glowRef.current;
     const ring = ringRef.current;
-    if (!wrap || !dot || !ring) return;
+    const dot = dotRef.current;
+    if (!wrap || !glow || !ring || !dot) return;
 
     const root = document.documentElement;
     root.classList.add("cursor-follower-active");
@@ -66,17 +68,18 @@ export function CursorFollower() {
     const onLeave = () => setVisible(false);
 
     const tick = () => {
-      // Dot is snappy, ring trails — the offset between them creates the smooth glide.
-      dotX += (mouseX - dotX) * 0.4;
-      dotY += (mouseY - dotY) * 0.4;
-      ringX += (mouseX - ringX) * 0.14;
-      ringY += (mouseY - ringY) * 0.14;
+      // Core dot is snappy; ring and halo glide behind it for a silky trail.
+      dotX += (mouseX - dotX) * 0.42;
+      dotY += (mouseY - dotY) * 0.42;
+      ringX += (mouseX - ringX) * 0.13;
+      ringY += (mouseY - ringY) * 0.13;
 
-      const goal = (hovering ? 1.9 : 1) * (pressed ? 0.8 : 1);
+      const goal = (hovering ? 1.75 : 1) * (pressed ? 0.82 : 1);
       scale += (goal - scale) * 0.14;
 
       dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`;
       ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) scale(${scale})`;
+      glow.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) scale(${0.85 + (scale - 1) * 0.8})`;
 
       frame = requestAnimationFrame(tick);
     };
@@ -99,7 +102,10 @@ export function CursorFollower() {
 
   return (
     <div ref={wrapRef} className="cursor-follower" data-visible="false" aria-hidden="true">
-      <div ref={ringRef} className="cursor-follower-ring" />
+      <div ref={glowRef} className="cursor-follower-glow" />
+      <div ref={ringRef} className="cursor-follower-ring">
+        <div className="cursor-follower-ring-arc" />
+      </div>
       <div ref={dotRef} className="cursor-follower-dot" />
     </div>
   );
