@@ -463,10 +463,10 @@
     filter: blur(10px);
   }
 
-  /* Precise white core dot. */
+  /* Precise white core dot — sized to sit proportionally inside the 36px ring. */
   .cursor-follower-dot {
-    width: 5px;
-    height: 5px;
+    width: 9px;
+    height: 9px;
     background: #eef2f9;
     box-shadow: 0 0 10px rgba(138, 168, 255, 0.85);
     transition:
