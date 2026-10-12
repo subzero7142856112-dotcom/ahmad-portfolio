@@ -85,7 +85,7 @@ export function Navbar() {
                 alt=""
                 width={36}
                 height={36}
-                className="h-9 w-9 rounded-lg border border-primary/40 object-contain transition-all duration-300 group-hover:border-primary/70 group-hover:shadow-glow"
+                className="h-9 w-9 rounded-lg object-contain transition-all duration-300 group-hover:shadow-glow"
               />
               <span className="hidden text-[14px] font-semibold tracking-tight text-fg sm:block">
                 {personal.fullName}
