@@ -3,11 +3,14 @@ import { projects } from "@/data/projects";
 import { posts } from "@/data/blog";
 import { absoluteUrl } from "@/lib/utils";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
     { url: absoluteUrl("/"), lastModified: now, changeFrequency: "monthly", priority: 1 },
+    { url: absoluteUrl("/skills"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     ...projects.map((project) => ({
       url: absoluteUrl(`/projects/${project.slug}`),
       lastModified: now,

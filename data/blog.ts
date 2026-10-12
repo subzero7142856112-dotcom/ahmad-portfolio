@@ -1,3 +1,5 @@
+import { asset } from "@/lib/paths";
+
 export type PostStatus = "published" | "draft";
 
 export interface BlogPost {
@@ -29,7 +31,7 @@ export const posts: BlogPost[] = [
     readingTime: "7 min read",
     excerpt:
       "How text representations such as TF-IDF and transformer embeddings are used to detect phishing and malicious content.",
-    image: "/images/blog/nlp-cybersecurity.svg",
+    image: asset("/images/blog/nlp-cybersecurity.svg"),
     status: "draft",
   },
   {
@@ -41,7 +43,7 @@ export const posts: BlogPost[] = [
     readingTime: "9 min read",
     excerpt:
       "A practical walkthrough of structuring a Flutter project, managing local state, and shipping a local-first application.",
-    image: "/images/blog/flutter-app.svg",
+    image: asset("/images/blog/flutter-app.svg"),
     status: "draft",
   },
   {
@@ -53,7 +55,7 @@ export const posts: BlogPost[] = [
     readingTime: "11 min read",
     excerpt:
       "Design decisions, model selection lessons and engineering trade-offs behind a phishing detection system.",
-    image: "/images/blog/shieldai-build.svg",
+    image: asset("/images/blog/shieldai-build.svg"),
     status: "draft",
   },
   {
@@ -65,7 +67,7 @@ export const posts: BlogPost[] = [
     readingTime: "8 min read",
     excerpt:
       "Comparing classical baselines and transformer models for email and URL classification tasks.",
-    image: "/images/blog/ml-phishing.svg",
+    image: asset("/images/blog/ml-phishing.svg"),
     status: "draft",
   },
 ];

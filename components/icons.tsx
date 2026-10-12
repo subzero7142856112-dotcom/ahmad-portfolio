@@ -317,3 +317,12 @@ export function IconGrid(props: IconProps) {
     </svg>
   );
 }
+
+export function IconSearch(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16.2 16.2 4.3 4.3" />
+    </svg>
+  );
+}

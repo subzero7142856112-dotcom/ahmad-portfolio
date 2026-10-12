@@ -37,6 +37,15 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /ahmad-portfolio
+          NEXT_PUBLIC_SITE_URL: https://subzero7142856112-dotcom.github.io/ahmad-portfolio
+
+      # GitHub Pages serves a repository named <user>.github.io at the domain
+      # root — this project site lives under /ahmad-portfolio, hence the base
+      # path above. .nojekyll stops Pages' Jekyll step from ignoring _next/.
+      - name: Add .nojekyll
+        run: touch out/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -1,20 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { skills, skillFilters, filterGroupMap, type SkillFilterKey } from "@/data/skills";
+import Link from "next/link";
+import { skills } from "@/data/skills";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
-import { cn } from "@/lib/utils";
+import { SkillMarquee } from "@/components/skills/SkillMarquee";
+import { IconArrowRight } from "@/components/icons";
+
+// Interleave so both rows carry a balanced mix of categories.
+const topRow = skills.filter((_, index) => index % 2 === 0);
+const bottomRow = skills.filter((_, index) => index % 2 === 1);
 
 export function Skills() {
-  const [active, setActive] = useState<SkillFilterKey>("All");
-
-  const visible = useMemo(() => {
-    const groups = filterGroupMap[active];
-    return skills.filter((skill) => groups.includes(skill.group));
-  }, [active]);
-
   return (
     <section id="skills" className="section">
       <Container>
@@ -27,65 +25,30 @@ export function Skills() {
         </Reveal>
 
         <Reveal delay={80}>
-          <div
-            className="mb-7 flex flex-wrap gap-2"
-            role="group"
-            aria-label="Filter skills by category"
-          >
-            {skillFilters.map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                className="filter-pill"
-                aria-pressed={active === filter}
-                onClick={() => setActive(filter)}
-              >
-                {filter}
-              </button>
-            ))}
+          {/* Each row carries its own edge fade (mask on .marquee); no shared
+              wrapper, tint or glow behind them so cards dissolve straight into
+              the page background. */}
+          <div className="space-y-6">
+            <SkillMarquee items={topRow} direction="right" duration={58} />
+            <SkillMarquee items={bottomRow} direction="left" duration={68} />
           </div>
         </Reveal>
 
-        <p className="sr-only" role="status" aria-live="polite">
-          Showing {visible.length} technologies
-        </p>
-
-        <ul key={active} className="grid grid-cols-2 gap-3 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
-          {visible.map((skill, index) => (
-            <li
-              key={`${skill.group}-${skill.name}`}
-              className="animate-fade-up"
-              style={{ animationDelay: `${Math.min(index * 25, 400)}ms` }}
-            >
-              <div
-                className="group flex h-full flex-col items-center gap-3 rounded-xl border border-line bg-gradient-to-b from-white/[0.035] to-white/[0.01] px-3 py-4 text-center
-                  transition-all duration-300 ease-smooth hover:-translate-y-1 hover:border-primary/40 hover:shadow-lift"
-              >
-                <span
-                  className="grid h-11 w-11 place-items-center rounded-xl border font-display text-[13px] font-bold transition-transform duration-300 group-hover:scale-105"
-                  style={{
-                    color: skill.color,
-                    borderColor: `${skill.color}40`,
-                    backgroundColor: `${skill.color}14`,
-                  }}
-                  aria-hidden="true"
-                >
-                  {skill.mark}
-                </span>
-                <span className="text-[12.5px] font-medium leading-tight text-fg-muted transition-colors group-hover:text-fg">
-                  {skill.name}
-                </span>
-              </div>
-            </li>
-          ))}
-        </ul>
-
         <Reveal delay={120}>
-          <p className={cn("mt-6 text-[13px] text-fg-dim")}>
-            {active === "All"
-              ? `${visible.length} technologies across programming, AI/ML, web, mobile, security and tooling.`
-              : `${visible.length} technologies in ${active}.`}
-          </p>
+          <div className="mt-9 flex flex-col items-center gap-4 text-center">
+            <p className="text-[13px] text-fg-dim">
+              {skills.length} technologies across programming, AI/ML, web, mobile, security and
+              tooling.
+            </p>
+            <Link
+              href="/skills"
+              className="group btn-ghost"
+              aria-label="Explore all technologies"
+            >
+              <span>Explore All</span>
+              <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
         </Reveal>
       </Container>
     </section>

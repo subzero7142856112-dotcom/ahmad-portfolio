@@ -1,3 +1,5 @@
+import { asset } from "@/lib/paths";
+
 export type ProjectFilterKey =
   | "All"
   | "AI / ML"
@@ -76,6 +78,8 @@ export interface Project {
   /** Repository URL. null = falls back to the GitHub profile link. */
   github: string | null;
   demo: string | null;
+  /** Optional downloadable project documentation (e.g. .docx) served from /files. */
+  document?: string | null;
   caseStudy: CaseStudy;
 }
 
@@ -100,7 +104,7 @@ export const projects: Project[] = [
       "PyTorch",
       "Hugging Face",
     ],
-    image: "/general images/ShieldAI Phishing Detection Workspace.png",
+    image: asset("/general images/ShieldAI Phishing Detection Workspace.png"),
     imageAlt:
       "Laptop on a desk showing a ShieldAI phishing detection dashboard concept: an email analysis panel with a sample message, a red 'Phishing Detected' verdict with a confidence score, and an LLM + RAG explanation listing detected phishing indicators.",
     year: "2026",
@@ -270,7 +274,7 @@ export const projects: Project[] = [
     longDescription:
       "A Flutter application for organising training plans and recording sessions on-device. It focuses on a fast logging flow, clear progress feedback and reminders that support daily consistency — all without requiring an account or network connection.",
     technologies: ["Flutter", "Dart", "Local Storage", "Responsive UI"],
-    image: "/images/projects/workout-tracker.png",
+    image: asset("/images/projects/workout-tracker.png"),
     imageAlt:
       "WorkTraker fitness app showcase — “Build Better Habits, A Stronger You” — three phones showing a 30-day plan, a Day 3/30 progress ring, and an exercise library, with feature highlights for plans, progress tracking, reminders and a personal profile in a blue theme.",
     year: "2024",
@@ -369,207 +373,168 @@ export const projects: Project[] = [
   },
   {
     slug: "mafia-social-deduction",
-    title: "Mafia Social Deduction Game",
+    title: "Mafia Local Multiplayer Game",
     category: "Mobile",
-    categoryLine: "Flutter · Game UI · Mobile",
+    categoryLine: "Flutter · Local Multiplayer · Mobile",
     filters: ["Mobile", "Other"],
     description:
-      "A social deduction game concept featuring configurable roles, voting mechanics, game phases, and a dark Emerald Noir visual identity.",
+      "A Flutter-based local multiplayer Mafia game for 4–10 Android phones in the same room: one device hosts, the rest discover and join automatically over the local network — no Internet, backend or accounts.",
     longDescription:
-      "A Flutter-based social deduction game built around a configurable role system and a phase-driven game loop. The visual identity — Emerald Noir — uses deep greens, layered surfaces and high-contrast typography to keep the game state readable at a glance.",
-    technologies: ["Flutter", "Dart", "Local State", "UI/UX Design"],
-    image: "/images/projects/mafia-game.svg",
+      "Mafia Local Multiplayer Game is a Flutter/Dart Android application that turns a group of people physically together into a social-deduction game of Mafia. One smartphone becomes the Host: it creates the room, keeps the authoritative game state and synchronizes events. Nearby devices act as Clients — they discover the room automatically, join with one tap (no IP or port entry) and receive only the private information their role allows. The system targets roughly 4–10 devices, runs entirely on the local network without Internet, cloud services, Firebase or user accounts, and is distributed as a single release APK installed manually on each device. The networking layer is deliberately independent of Mafia's rules, so the same Host/Client foundation can later support other social or party games.",
+    technologies: [
+      "Flutter",
+      "Dart",
+      "Android",
+      "Local Networking",
+      "Host/Client Architecture",
+      "Service Discovery",
+      "Real-Time Sync",
+      "Offline-First",
+      "UI/UX Design",
+    ],
+    image: asset("/general images/Mafia Night_ Local Multiplayer Gathering.png"),
     imageAlt:
-      "Mafia game concept visual: playing card silhouettes with role symbols and a vote gauge in a dark emerald theme.",
+      "Cinematic Mafia night scene: players around a lantern-lit table holding smartphones, one central Host phone with a Start Game screen and four Client phones showing a Join Game screen with automatic discovery, connected by Wi-Fi signals, with Mafia, Doctor and Citizen role cards on the table.",
     year: "2024",
     featured: true,
     github: null,
     demo: null,
+    document: asset("/files/Mafia_Local_Multiplayer_Game_Project_Documentation.docx"),
     caseStudy: {
       summary:
-        "A social deduction game with configurable roles, voting mechanics and a phase-driven state machine.",
+        "A Flutter-based local multiplayer Mafia game for 4–10 Android phones in the same physical space: a Host-authoritative architecture with automatic local discovery, real-time state synchronization and one-tap joining — with no Internet, backend, accounts or manual IP configuration.",
       overview: [
-        "The project explores how to run a complete social deduction game loop — setup, night phase, day discussion, voting and elimination — through a clear, well-typed state machine.",
-        "Roles are configurable rather than hard-coded, so new roles with different abilities can be added without rewriting the game flow.",
+        "Mafia is a social-deduction game in which players receive hidden roles and move through night and day phases, trying to identify the opposing faction while protecting their own. This project turns that experience into a coordinated mobile game where every participant has a private screen while the group still plays together in the same room.",
+        "One smartphone acts as the Host. It creates the local game room, advertises it on the nearby network, accepts connections, maintains the player list, assigns roles privately, and holds the single authoritative game state. The remaining smartphones act as Clients: they search for nearby rooms, list them with name and player count, and join with one tap — no IP address or port is ever typed.",
+        "Gameplay never touches the Internet. Communication runs over the local network (or a Host-created hotspot), so the game stays fully usable with no router, no cloud service, no Firebase, no remote database and no user accounts. Distribution is a single Flutter release APK installed manually on every participating device; the Host vs Client role is chosen at runtime, not by separate builds.",
+        "The architecture is intentionally game-agnostic. The networking, discovery, session and synchronization layers do not hard-code Mafia's rules, so the same Host/Client foundation can later carry additional Mafia roles, alternative social-deduction modes or entirely different party games. This page documents the designed system and its specification; it does not claim Google Play publication or cloud infrastructure.",
       ],
       features: [
-        "Configurable role set",
-        "Night / day / voting phase engine",
-        "Voting mechanics with tie handling",
-        "Player and role management",
-        "Emerald Noir visual identity",
-        "Local state, no backend required",
+        "Host-created local room with automatic advertisement on the nearby network",
+        "One-tap joining: rooms appear in a discovery list, no IP or port entry",
+        "Targeted at approximately 4–10 nearby Android devices",
+        "Host-authoritative game state — clients send intent, never overwrite state",
+        "Private role assignment (Mafia, Citizen, Doctor, extensible roles)",
+        "Phase-driven game loop: setup → night → day discussion → voting → elimination",
+        "Real-time synchronization of actions, phase changes and timers",
+        "Lobby with player list, readiness state and host-controlled start",
+        "Explicit connection states: searching, connecting, playing, reconnecting, room full",
+        "Fully offline: no Internet, backend, accounts or cloud dependency",
+        "Single release APK for all devices; role chosen at runtime",
+        "Networking layer reusable for other local social/party games",
       ],
       problem: [
         {
-          title: "Game phases are easy to break",
-          body: "Social deduction games depend on strict ordering — night actions resolve before discussion, discussion before voting — and a single invalid transition can corrupt the round.",
+          title: "Classic Mafia needs a moderator",
+          body: "Traditional Mafia requires one person to narrate and manage a shared deck of role cards, which pulls someone out of the game and makes every night phase depend on manual bookkeeping.",
         },
         {
-          title: "Roles need to be extensible",
-          body: "Hard-coding abilities makes adding or balancing roles painful, so the role system had to be data-driven from the start.",
+          title: "Online multiplayer infrastructure is the wrong fit",
+          body: "Most mobile multiplayer solutions assume accounts, cloud servers, matchmaking and Internet access — heavy requirements for a group of friends already sitting at the same table.",
         },
         {
-          title: "State must stay readable",
-          body: "Players need to understand who is alive, what phase it is, and what just happened without reading a wall of text.",
+          title: "Manual networking breaks the experience",
+          body: "Requiring players to enter IP addresses, open ports or configure hotspots puts a technical barrier in front of what should be a five-second join.",
+        },
+        {
+          title: "Hidden information must stay hidden",
+          body: "Every player needs a private screen, but roles, night actions and dead-player identity must never leak through synchronization or shared state.",
         },
       ],
       approach: [
         {
           index: "01",
-          title: "Role system design",
-          body: "Define roles as data — team, abilities, reveal conditions — so the game engine never needs to know specific role names.",
+          title: "Host-authoritative design",
+          body: "Model one device as the source of truth. Clients send intended actions; the Host validates them against the current phase and player, updates the state and broadcasts the result — minimizing divergence and keeping the rules in one place.",
         },
         {
           index: "02",
-          title: "Phase state machine",
-          body: "Model setup, night, day, voting and results as explicit states with guarded transitions between them.",
+          title: "Automatic local discovery",
+          body: "Hide networking from the user: opening Join Game starts a search, nearby rooms appear with name and player count, and connecting happens automatically — no IP addresses, no ports, no manual setup.",
         },
         {
           index: "03",
-          title: "Voting flow",
-          body: "Implement vote collection, tallying, tie handling and elimination as a testable unit.",
+          title: "Layered Flutter architecture",
+          body: "Separate presentation, game rules, networking, session and platform concerns into distinct layers (core, game, networking, features) so the engine, protocol and UI can evolve independently.",
         },
         {
           index: "04",
-          title: "UI system",
-          body: "Build the Emerald Noir component set — cards, badges, timelines — for consistent game screens.",
+          title: "Structured message protocol",
+          body: "Define explicit message types — discover/advertise, join request/accepted/rejected, player joined/left/ready, start, role assignment, game state, action, action result, phase changed, timer, game over, heartbeat and error — instead of ad-hoc strings.",
         },
         {
           index: "05",
-          title: "Flow testing",
-          body: "Walk through complete rounds with different role counts to verify transitions and win conditions.",
+          title: "Private role and phase engine",
+          body: "Assign roles on the Host and deliver each player only their private role card, then drive night, day, voting and elimination through an explicit state machine with guarded transitions.",
+        },
+        {
+          index: "06",
+          title: "Connection and failure handling",
+          body: "Track an explicit state per client (searching, room found, connecting, connected, waiting, playing, reconnecting, disconnected, host unavailable, room full, game started) and treat Host disconnection as a first-class case.",
+        },
+        {
+          index: "07",
+          title: "Offline-first UX",
+          body: "No login, no cloud, no Internet. Ship one release APK (flutter build apk --release) installed manually on every device, and keep technical networking details out of the player-facing interface.",
+        },
+        {
+          index: "08",
+          title: "Device-scale testing strategy",
+          body: "Validate on physical Android hardware: Host creation, single join, then 4, 6, 8 and ~10 devices; local networks without Internet; Host hotspot mode; repeated join/leave; simultaneous actions; host/client disconnection; room-full and permission flows.",
         },
       ],
       architecture: [
-        { label: "Game Setup", detail: ["Players", "Role config"] },
-        { label: "Role Assignment", detail: ["Balanced dealing", "Hidden identity"] },
-        { label: "Phase Engine", detail: ["Night", "Day", "Vote"], emphasis: true },
-        { label: "Round Result", detail: ["Elimination", "Win check"] },
+        { label: "Host Room", detail: ["Create game", "Advertise room"] },
+        { label: "Discovery", detail: ["Auto search", "Room list"], emphasis: true },
+        { label: "Lobby", detail: ["Players", "Readiness", "One-tap join"] },
+        {
+          label: "Game Engine",
+          detail: ["Role assignment", "Night / Day / Vote"],
+          emphasis: true,
+        },
+        { label: "Sync", detail: ["Validate on Host", "Broadcast state"] },
+        { label: "Result", detail: ["Elimination", "Win check", "New round"] },
       ],
       datasets: [],
-      results: [],
+      results: [
+        { label: "Player target", value: "4–10", hint: "Nearby Android devices per room" },
+        { label: "Internet", value: "None", hint: "Local network / hotspot only" },
+        { label: "Backend", value: "None", hint: "No cloud, Firebase or database" },
+        { label: "Accounts", value: "None", hint: "No login for local gameplay" },
+        { label: "Distribution", value: "1 APK", hint: "Manually installed; role chosen at runtime" },
+        { label: "Join flow", value: "1 tap", hint: "Automatic discovery, no IP/port entry" },
+        { label: "Play publication", value: null, hint: "Not claimed — manual APK install" },
+        { label: "Device test results", value: null, hint: "Pending verified multi-device evaluation" },
+      ],
       challenges: [
         {
-          title: "Transition edge cases",
-          body: "Dead players voting, no majority ties and eliminated-night-players required explicit handling in every transition.",
+          title: "Discovery without assuming a network",
+          body: "Wi-Fi being enabled does not mean a usable network exists. The design must support shared local networks, a Host-created hotspot and peer-to-peer options, and pick the transport only after real-device validation.",
         },
         {
-          title: "Information hierarchy",
-          body: "Showing enough state to stay readable while hiding secret information drove most of the layout decisions.",
+          title: "Keeping state single-sourced",
+          body: "Every important decision — votes, night actions, eliminations — must be finalized only on the Host. Clients render received state, so invalid or out-of-phase actions have to be rejected cleanly without desynchronizing the room.",
         },
         {
-          title: "Balancing roles",
-          body: "A configurable role system makes balancing a design problem rather than a code change, so defaults needed careful testing.",
+          title: "Privacy of hidden roles",
+          body: "Role assignment and night actions are private by rule, so the synchronization layer must address messages per player instead of broadcasting a full global state.",
+        },
+        {
+          title: "Host failure and disconnects",
+          body: "If the Host disappears, the whole room depends on it. Clients must detect the loss, surface a clear message and terminate predictably; host migration is deferred rather than added for complexity.",
+        },
+        {
+          title: "Android platform variance",
+          body: "Discovery and local networking behave differently across Android versions and permission flows, so only necessary permissions are requested and each version-specific behavior is handled explicitly.",
         },
       ],
       lessons: [
-        "A small, explicit state machine eliminates a large class of gameplay bugs.",
-        "Data-driven role definitions turn feature work into configuration.",
-        "A tight visual identity makes complex game state feel calm instead of noisy.",
-      ],
-    },
-  },
-  {
-    slug: "shopify-anime-store",
-    title: "Shopify Anime Store",
-    category: "Web",
-    categoryLine: "Web · E-commerce",
-    filters: ["Web"],
-    description:
-      "A modern anime-focused e-commerce storefront concept with custom visual identity and product-focused UI.",
-    longDescription:
-      "An anime-oriented storefront concept built around a custom visual identity: bold typography, high-contrast product cards and a layout that keeps merchandise, collections and promotions legible without clutter.",
-    technologies: ["Shopify", "HTML", "CSS", "JavaScript"],
-    image: "/images/projects/shopify-store.svg",
-    imageAlt:
-      "Anime store concept visual: a browser window showing a product grid with stylised character artwork and a shopping cart.",
-    year: "2024",
-    featured: true,
-    github: null,
-    demo: null,
-    caseStudy: {
-      summary:
-        "A product-focused anime e-commerce storefront with a custom visual identity and responsive layout.",
-      overview: [
-        "The project is a storefront concept: a themed Shopify build focused on visual identity, collection structure and product-page clarity.",
-        "Custom HTML, CSS and JavaScript extend the base theme so the design language stays consistent from hero to checkout.",
-      ],
-      features: [
-        "Custom visual identity",
-        "Collection and product templates",
-        "High-contrast product cards",
-        "Responsive layout",
-        "Promotional / hero sections",
-        "Theme customisation via HTML, CSS and JS",
-      ],
-      problem: [
-        {
-          title: "Image-heavy pages get slow",
-          body: "Anime merchandising relies on artwork, so layouts must stay performant with many large images.",
-        },
-        {
-          title: "Density vs. clarity",
-          body: "Storefronts need many products visible at once without turning into visual noise.",
-        },
-        {
-          title: "Consistency across templates",
-          body: "Hero, collection, product and cart templates must share one design language despite very different content.",
-        },
-      ],
-      approach: [
-        {
-          index: "01",
-          title: "Visual identity",
-          body: "Define palette, type scale, card style and spacing rules that work on both artwork and UI chrome.",
-        },
-        {
-          index: "02",
-          title: "Layout system",
-          body: "Build a responsive grid for collections with consistent card dimensions and clear price hierarchy.",
-        },
-        {
-          index: "03",
-          title: "Template extension",
-          body: "Extend Shopify templates with custom HTML, CSS and JavaScript where the theme falls short.",
-        },
-        {
-          index: "04",
-          title: "Product page focus",
-          body: "Design product pages around imagery, key details and a single primary call to action.",
-        },
-        {
-          index: "05",
-          title: "Performance pass",
-          body: "Optimise image loading, defer scripts and trim unused styles to keep pages fast.",
-        },
-      ],
-      architecture: [
-        { label: "Catalog", detail: ["Products", "Collections"] },
-        { label: "Storefront UI", detail: ["Hero", "Grid", "Product page"] },
-        { label: "Cart", detail: ["Line items", "Totals"] },
-        { label: "Checkout", detail: ["Shopify checkout"], emphasis: true },
-      ],
-      datasets: [],
-      results: [],
-      challenges: [
-        {
-          title: "Balancing artwork and UI",
-          body: "Strong artwork competes with interface elements, so contrast and spacing rules had to be enforced carefully.",
-        },
-        {
-          title: "Theme constraints",
-          body: "Shopify templates impose structure; customisation happens inside that structure, which shapes what can be changed cleanly.",
-        },
-        {
-          title: "Performance with many images",
-          body: "Lazy loading and disciplined image sizing were necessary to keep collection pages responsive.",
-        },
-      ],
-      lessons: [
-        "A written design system prevents storefront templates from drifting apart.",
-        "Product cards carry most of a store's UX — they deserve the most iteration.",
-        "Performance budgets matter more on image-heavy pages than on any other template.",
+        "Host-authoritative state eliminates most multiplayer desync bugs: clients express intent, the server of the room decides.",
+        "Hiding networking behind automatic discovery and one-tap join is what makes a technically complex product feel simple at the table.",
+        "Defining a structured message protocol up front (join, ready, role, action, phase, heartbeat, error) prevents the ad-hoc string spaghetti that kills local multiplayer projects.",
+        "Designing the networking layer to be game-agnostic turns a Mafia app into a reusable local party-game engine.",
+        "Offline-first is a product decision, not a technical one: no accounts, no Internet and manual APK distribution keep the focus on the people in the room.",
+        "Multi-device behavior must be validated on physical hardware at the real player counts (4, 6, 8, ~10) — emulators cannot prove discovery or latency.",
       ],
     },
   },
@@ -584,7 +549,7 @@ export const projects: Project[] = [
     longDescription:
       "A personal English-learning planner built with Flutter to organize an intensive daily study routine and make progress easy to track. The app combines an 8-week learning plan, daily activity tracking, grammar progress, and a structured vocabulary library powered by a local JSON dataset. It is designed to work offline, keep user progress locally, and turn a broad language-learning goal into a clear, measurable workflow.",
     technologies: ["Flutter", "Dart", "JSON", "Local Storage", "Material Design", "Responsive UI"],
-    image: "/images/projects/english-learning-planner.png",
+    image: asset("/images/projects/english-learning-planner.png"),
     imageAlt:
       "Dark-mode Flutter English-learning planner with study progress, vocabulary tracking, and an English vocabulary detail card.",
     year: "2026",
@@ -714,7 +679,7 @@ export const projects: Project[] = [
       "Product Design",
       "Trust & Safety",
     ],
-    image: "/general images/Connecting Amman Homes with Trusted Services.png",
+    image: asset("/general images/Connecting Amman Homes with Trusted Services.png"),
     imageAlt:
       "Connecting Amman homes with trusted services: two phones showing an Arabic RTL home-services app — a customer booking a service and a verified worker profile — with a customer at home, a worker in Amman, and trust, location and availability icons.",
     year: "2026",
@@ -874,7 +839,7 @@ export const projects: Project[] = [
       "JSON Backup",
       "Light / Dark Themes",
     ],
-    image: "/general images/TaskFlow Productivity App Showcase.png",
+    image: asset("/general images/TaskFlow Productivity App Showcase.png"),
     imageAlt:
       "TaskFlow productivity app showcase — “Organize Today, Build Tomorrow” — with three phone screens showing today's tasks, a statistics dashboard with a completion chart, and feature highlights for staying on schedule, tracking progress, dark themes, and local & private data.",
     year: "2026",
@@ -1043,7 +1008,7 @@ export const projects: Project[] = [
       "FCM",
       "WebRTC",
     ],
-    image: "/general images/SecureChat_app.png",
+    image: asset("/general images/SecureChat_app.png"),
     imageAlt:
       "SecureChat showcase in dark navy and neon purple: a shield-and-lock logo, a phone showing the chat list, and badges for End-to-End Encrypted, Your Privacy Matters and Fast & Secure, captioned “Private conversations for a safer tomorrow.”",
     year: "2026",

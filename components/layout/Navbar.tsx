@@ -93,7 +93,8 @@ export function Navbar() {
                 const isActive = onHome
                   ? activeSection === id
                   : (link.href === "#blog" && pathname.startsWith("/blog")) ||
-                    (link.href === "#projects" && pathname.startsWith("/projects"));
+                    (link.href === "#projects" && pathname.startsWith("/projects")) ||
+                    (link.href === "#skills" && pathname.startsWith("/skills"));
                 return (
                   <li key={link.href}>
                     <Link
@@ -192,7 +193,8 @@ export function Navbar() {
                 const isActive = onHome
                   ? activeSection === id
                   : (link.href === "#blog" && pathname.startsWith("/blog")) ||
-                    (link.href === "#projects" && pathname.startsWith("/projects"));
+                    (link.href === "#projects" && pathname.startsWith("/projects")) ||
+                    (link.href === "#skills" && pathname.startsWith("/skills"));
                 return (
                   <li
                     key={link.href}

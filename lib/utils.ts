@@ -4,7 +4,14 @@ export function cn(...parts: Array<string | false | null | undefined>) {
 
 export function absoluteUrl(path: string) {
   const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
-  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+  const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
+  let normalized = path.startsWith("/") ? path : `/${path}`;
+  // When the site URL already includes the base path (GitHub Pages) and the
+  // given path was prefixed with it too, strip it to avoid a double prefix.
+  if (basePath && base.endsWith(basePath) && normalized.startsWith(`${basePath}/`)) {
+    normalized = normalized.slice(basePath.length) || "/";
+  }
+  return `${base}${normalized}`;
 }
 
 export function slugify(value: string) {

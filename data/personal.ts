@@ -1,7 +1,9 @@
 /**
  * Central identity content.
- * Every value here is configurable — no facts are invented beyond what is supplied.
+ * Every value here is configurable �?" no facts are invented beyond what is supplied.
  */
+import { asset } from "@/lib/paths";
+
 export const personal = {
   firstName: "Ahmad",
   lastName: "Al-Zawahrah",
@@ -22,7 +24,7 @@ export const personal = {
   location: "Amman, Jordan",
   email: "zawahrahceo@gmail.com",
   /** Drop the real PDF at this path (see /public/cv/README.md). */
-  cvPath: "/cv/Ahmad-Al-Zawahrah-CV.pdf",
+  cvPath: asset("/cv/Ahmad-Al-Zawahrah-CV.pdf"),
   degree: "B.Sc. in Computer Engineering",
   university: "The Hashemite University",
 } as const;

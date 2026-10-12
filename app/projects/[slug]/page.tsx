@@ -15,6 +15,7 @@ import {
   IconArrowLeft,
   IconArrowRight,
   IconCheck,
+  IconDownload,
   IconExternalLink,
   IconGitHub,
 } from "@/components/icons";
@@ -167,6 +168,17 @@ export default async function ProjectCaseStudyPage({
                     Live Demo — not deployed
                   </span>
                 )}
+                {project.document ? (
+                  <Button
+                    href={project.document}
+                    variant="ghost"
+                    download
+                    icon={<IconDownload className="h-4 w-4" />}
+                    iconPosition="left"
+                  >
+                    Project Documentation
+                  </Button>
+                ) : null}
               </div>
             </div>
 
@@ -398,6 +410,17 @@ export default async function ProjectCaseStudyPage({
                       iconPosition="left"
                     >
                       Live Demo
+                    </Button>
+                  ) : null}
+                  {project.document ? (
+                    <Button
+                      href={project.document}
+                      variant="ghost"
+                      download
+                      icon={<IconDownload className="h-4 w-4" />}
+                      iconPosition="left"
+                    >
+                      Project Documentation
                     </Button>
                   ) : null}
                   <Button href="/#projects" variant="ghost">

@@ -147,6 +147,84 @@
     mask-image: linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
   }
 
+  /* ---------- Infinite marquee sliders ---------- */
+  @keyframes marquee-left {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+  @keyframes marquee-right {
+    from {
+      transform: translate3d(-50%, 0, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .mask-fade-marquee {
+    /* Per-row edge fade with a soft ease — cards dissolve into the page
+       background (ink) with no visible frame, patch or rectangular edge. */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.15) 1.8%,
+      rgba(0, 0, 0, 0.5) 3.6%,
+      #000 6.5%,
+      #000 93.5%,
+      rgba(0, 0, 0, 0.5) 96.4%,
+      rgba(0, 0, 0, 0.15) 98.2%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.15) 1.8%,
+      rgba(0, 0, 0, 0.5) 3.6%,
+      #000 6.5%,
+      #000 93.5%,
+      rgba(0, 0, 0, 0.5) 96.4%,
+      rgba(0, 0, 0, 0.15) 98.2%,
+      transparent 100%
+    );
+  }
+
+  .marquee {
+    overflow: hidden;
+    /* Headroom so hover-lift on cards is never clipped by the overflow box. */
+    padding-block: 6px;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: marquee-left var(--marquee-duration, 60s) linear infinite;
+  }
+  .marquee-track[data-direction="right"] {
+    animation-name: marquee-right;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .marquee::-webkit-scrollbar {
+      display: none;
+    }
+    .marquee-track {
+      animation: none !important;
+      transform: none !important;
+    }
+    .marquee-track [data-copy] {
+      display: none !important;
+    }
+  }
+
   /* ---------- Buttons ---------- */
   .btn {
     @apply inline-flex select-none items-center justify-center gap-2 rounded-xl text-sm font-semibold
@@ -314,6 +392,38 @@
   .link-underline:hover::after {
     transform: scaleX(1);
     transform-origin: left;
+  }
+
+  /* ---------- Certificate lightbox ---------- */
+  @keyframes lightbox-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes lightbox-panel-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  .lightbox-overlay {
+    animation: lightbox-in 0.3s ease both;
+  }
+  .lightbox-panel {
+    animation: lightbox-panel-in 0.35s var(--ease-smooth) both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lightbox-overlay,
+    .lightbox-panel {
+      animation: none !important;
+    }
   }
 
   /* ---------- Section rhythm ---------- */

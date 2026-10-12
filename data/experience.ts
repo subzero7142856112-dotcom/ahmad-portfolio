@@ -14,7 +14,7 @@ export const experience: ExperienceItem[] = [
     id: "sana-computer",
     role: "Technical Support (Part-time)",
     organisation: "Sana Computer Center",
-    period: "2023 – 2024",
+    period: "2022 – 2025",
     summary: "Hardware and software support in a hands-on retail and repair environment.",
     bullets: [
       "Provided technical support for hardware and software issues.",
@@ -28,12 +28,12 @@ export const experience: ExperienceItem[] = [
     role: "Freelance & Personal Projects",
     organisation: "Independent",
     period: "2023 – Present",
-    summary: "Web, mobile and AI projects built end to end, from design to deployment.",
+    summary: "Web and mobile projects built end to end, from design to deployment.",
     bullets: [
-      "Built multiple personal and client projects across web, mobile and AI.",
-      "Developed skills in Flutter, web development, and machine learning.",
+      "Built multiple personal and client projects across web and mobile.",
+      "Developed skills in Flutter and web development.",
       "Continuously learning and exploring new technologies through applied work.",
     ],
-    tags: ["Web", "Mobile", "AI / ML", "Freelance"],
+    tags: ["Web", "Mobile", "Freelance"],
   },
 ];

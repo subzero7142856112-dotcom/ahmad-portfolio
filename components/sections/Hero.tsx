@@ -1,4 +1,5 @@
 import { personal } from "@/data/personal";
+import { asset } from "@/lib/paths";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -17,7 +18,7 @@ function HeroKatana() {
 
       <div className="hero-float relative w-full max-w-[260px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[470px] lg:max-w-[540px] xl:max-w-[640px]">
         <img
-          src="/general images/Neon Cyber Katana Code Storm.png"
+          src={asset("/general images/Neon Cyber Katana Code Storm.png")}
           alt=""
           width={1672}
           height={941}
