@@ -426,6 +426,71 @@
     }
   }
 
+  /* ---------- Cursor follower ---------- */
+  .cursor-follower {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  .cursor-follower-dot,
+  .cursor-follower-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 9999px;
+    opacity: 0;
+    will-change: transform;
+    transition:
+      opacity 0.3s ease,
+      border-color 0.25s ease,
+      background-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .cursor-follower[data-visible="true"] .cursor-follower-dot,
+  .cursor-follower[data-visible="true"] .cursor-follower-ring {
+    opacity: 1;
+  }
+
+  .cursor-follower-dot {
+    width: 6px;
+    height: 6px;
+    background: #4f7dff;
+    box-shadow: 0 0 12px rgba(79, 125, 255, 0.65);
+  }
+  .cursor-follower-dot[data-hover="true"] {
+    background: #22d3ee;
+    box-shadow: 0 0 14px rgba(34, 211, 238, 0.6);
+  }
+
+  .cursor-follower-ring {
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(238, 242, 249, 0.55);
+    mix-blend-mode: difference;
+  }
+  .cursor-follower-ring[data-hover="true"] {
+    border-color: rgba(255, 255, 255, 0.95);
+    border-width: 1.5px;
+  }
+
+  /* Hide the native cursor only while the follower is active. */
+  html.cursor-follower-active,
+  html.cursor-follower-active *,
+  html.cursor-follower-active *::before,
+  html.cursor-follower-active *::after {
+    cursor: none !important;
+  }
+  html.cursor-follower-active input,
+  html.cursor-follower-active textarea,
+  html.cursor-follower-active select,
+  html.cursor-follower-active [contenteditable="true"] {
+    cursor: text !important;
+  }
+  html.cursor-follower-active label {
+    cursor: none !important;
+  }
+
   /* ---------- Section rhythm ---------- */
   .section {
     @apply relative scroll-mt-24 py-16 md:py-20;

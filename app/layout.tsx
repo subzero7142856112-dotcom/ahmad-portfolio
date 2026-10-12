@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { ScrollFX } from "@/components/layout/ScrollFX";
+import { CursorFollower } from "@/components/layout/CursorFollower";
 import { personal, site } from "@/data/personal";
 import { socials } from "@/data/socials";
 import { ogImage } from "@/lib/seo";
@@ -106,6 +107,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <ScrollToTop />
         <ScrollFX />
+        <CursorFollower />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
