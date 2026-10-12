@@ -75,6 +75,8 @@ export interface Project {
   imageAlt: string;
   year: string;
   featured: boolean;
+  /** Optional hero treatment in the projects grid (spans full width, elevated design). */
+  highlight?: "hero";
   /** Repository URL. null = falls back to the GitHub profile link. */
   github: string | null;
   demo: string | null;
@@ -109,6 +111,7 @@ export const projects: Project[] = [
       "Laptop on a desk showing a ShieldAI phishing detection dashboard concept: an email analysis panel with a sample message, a red 'Phishing Detected' verdict with a confidence score, and an LLM + RAG explanation listing detected phishing indicators.",
     year: "2026",
     featured: true,
+    highlight: "hero",
     github: null,
     demo: null,
     caseStudy: {

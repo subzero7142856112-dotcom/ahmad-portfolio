@@ -63,7 +63,7 @@ export function ProjectsSection() {
           {visible.map((project, index) => (
             <li
               key={project.slug}
-              className="animate-fade-up"
+              className={`animate-fade-up ${project.highlight === "hero" ? "sm:col-span-2" : ""}`}
               style={{ animationDelay: `${index * 80}ms` }}
             >
               <ProjectCard project={project} />
