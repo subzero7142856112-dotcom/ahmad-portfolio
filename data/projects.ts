@@ -349,6 +349,174 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "cv-builder",
+    title: "Smart ATS CV Builder",
+    category: "Web",
+    categoryLine: "React · Supabase · AI",
+    filters: ["Web", "AI / ML"],
+    description:
+      "An AI-powered, ATS-safe CV builder with 13 templates, transparent resume scoring, job-description matching, and human-reviewed AI writing — built with React, Supabase, and Vercel serverless functions.",
+    longDescription:
+      "Smart ATS CV Builder helps job seekers build resumes that survive applicant tracking systems. Users pick from 13 ATS-safe templates and edit ten sections with drag-and-drop reordering, categorized skill chips, and live previews. A transparent, rule-based ATS engine scores each CV from 0–100 with specific strengths, weaknesses, and fixes — no black box. A Job Match tool extracts keywords from any pasted job description and shows exactly which terms are matched or missing. Optional AI features (improve summary, rewrite/generate bullets, analyze jobs, write cover letters) run through a secure serverless proxy that supports OpenAI, Claude, Gemini, Groq, and OpenRouter via env vars — and every suggestion requires explicit user approval before it is applied. PDF export uses pure print-CSS for clean, selectable text with zero PDF dependencies. Signed-in users get cloud sync through Supabase auth and JSONB persistence; the app also runs fully offline in guest mode with no API keys.",
+    technologies: [
+      "React 18",
+      "Vite 5",
+      "Tailwind CSS",
+      "Supabase",
+      "Vercel Serverless",
+      "Provider-Agnostic AI",
+    ],
+    image: asset("/general images/cv_builder.png"),
+    imageAlt:
+      "Showcase of a dark-themed AI CV builder: a left sidebar with dashboard and section navigation, a professional template gallery, a live CV editor previewing a software engineer resume, an ATS Score ring at 92/100, an AI assistance menu for summaries, skills, cover letters and job analysis, export options, and feature highlights for templates, customization, live preview, ATS-friendly resumes, and faster hiring.",
+    year: "2026",
+    featured: true,
+    github: "https://github.com/subzero7142856112-dotcom/smart-ats-cv-builder",
+    demo: "https://subzero7142856112-dotcom.github.io/smart-ats-cv-builder/",
+    caseStudy: {
+      summary:
+        "An AI-powered resume builder that produces clean, selectable-text, ATS-friendly CVs with live scoring, job-description matching, and human-in-the-loop AI writing assistance.",
+      overview: [
+        "Smart ATS CV Builder is a full-stack CV builder built with React and Vite. Users pick from 13 ATS-safe templates, edit 10 CV sections with drag-and-drop, get a transparent 0–100 ATS score, match their CV against any job description, and optionally use AI to improve summaries, rewrite bullets, and generate cover letters — with every suggestion reviewed before it is applied.",
+        "The frontend is a single documented file organised in layers: utilities, pure engines (ATS scoring and job matching — no React, fully testable), a theme-independent ResumeDocument renderer with three layout engines and 13 template skins, the app pages, and a string-routed app shell. State is plain useState with debounced persistence.",
+        "AI runs behind a secure serverless proxy: six Vercel functions share one provider-agnostic client, so switching between OpenAI, Claude, Gemini, Groq, and OpenRouter is an env-var change with zero code edits. Prompt ground rules forbid the model from ever inventing employers, degrees, or metrics — it may only rephrase what the candidate supplied.",
+        "The app degrades gracefully: deploy without any AI key and it still offers offline bullet suggestions, rule-based ATS scoring, and keyword job-matching. Guest CVs stay entirely on-device; signed-in users get Supabase auth and JSONB cloud sync with an 800 ms debounced autosave.",
+      ],
+      features: [
+        "13 ATS-safe templates over three shared layout engines",
+        "Transparent 0–100 ATS score with strengths, weaknesses, and tips",
+        "Job-description keyword matching with matched/missing chips",
+        "5 AI writing tools, each gated by an explicit human review",
+        "Provider-agnostic AI backend (5 providers, env-var switch)",
+        "Zero-dependency selectable-text PDF export via print-CSS",
+        "Drag-and-drop reordering of sections, entries, and bullets",
+        "10 editable sections plus user-defined custom sections",
+        "Design controls: 10 accent colors, fonts, spacing modes",
+        "Supabase cloud sync with debounced autosave",
+        "Fully offline guest mode with zero setup",
+        "Dark mode, accent themes, and responsive layouts",
+      ],
+      problem: [
+        {
+          title: "ATS systems parse, not admire",
+          body: "Visually rich PDFs produced by design tools often arrive at applicant tracking systems as garbled or empty text. The export has to stay visually clean for humans while remaining plain selectable text for parsers.",
+        },
+        {
+          title: "Resume advice is usually a black box",
+          body: "Most builders either give no score or a number with no explanation. Job seekers need to know exactly which parts of a CV are weak and what concrete fix improves them.",
+        },
+        {
+          title: "AI writing can hallucinate credentials",
+          body: "Left unguarded, language models invent employers, metrics, and degrees — the one failure mode that can destroy a candidate's credibility with a single fabricated bullet.",
+        },
+        {
+          title: "API keys cannot reach the browser",
+          body: "Any AI feature that calls a provider directly from client code leaks its secret. The keys had to live server-side without forcing every user to configure their own backend.",
+        },
+        {
+          title: "Not everyone wants an account",
+          body: "A resume builder that demands signup before the first edit loses people. The app needed a complete zero-backend path alongside the cloud-synced one.",
+        },
+      ],
+      approach: [
+        {
+          index: "01",
+          title: "Layered single-file architecture",
+          body: "Organise one App.jsx in documented layers — utilities, pure engines, the ResumeDocument renderer, pages, and the app shell — so each concern stays testable without splitting into a framework the project does not need.",
+        },
+        {
+          index: "02",
+          title: "Explainable ATS engine",
+          body: "Implement computeAts() as a deterministic client-side rubric (contact, summary, skills, experience, formatting) that returns a score plus strengths, weaknesses, and tips — never just a number.",
+        },
+        {
+          index: "03",
+          title: "One render engine, 13 skins",
+          body: "Build a theme-independent ResumeDocument with three layout engines (single-column, sidebar, split) and dress it in 13 template CSS skins, all previewable through a fixed A4 ScaledDoc component.",
+        },
+        {
+          index: "04",
+          title: "Offline job-match engine",
+          body: "Extract keywords from pasted job descriptions with a stopword filter and a curated tech lexicon, then diff them against the CV's full text to surface matched and missing terms entirely in the browser.",
+        },
+        {
+          index: "05",
+          title: "Provider-agnostic AI backend",
+          body: "Write one aiClient with an OpenAI-compatible dialect plus native Claude and Gemini adapters, wrap six serverless routes around it, and keep every API key in server env vars only.",
+        },
+        {
+          index: "06",
+          title: "Human-in-the-loop AI UX",
+          body: "Route every AI response into a review box with Apply, Discard, and Regenerate — plus length, tone, and custom-instruction controls — so nothing is ever auto-applied to the CV.",
+        },
+        {
+          index: "07",
+          title: "Cloud sync with an honest offline mode",
+          body: "Persist CVs to a single Supabase JSONB table with an 800 ms debounced autosave for signed-in users, while guest sessions stay fully local and never touch the network.",
+        },
+        {
+          index: "08",
+          title: "Print-CSS PDF export",
+          body: "Export through pure print CSS with A4 scaling and a screen/print split, setting document.title so the browser's Save-as-PDF defaults to FullName_CV — selectable text with zero PDF libraries.",
+        },
+      ],
+      architecture: [
+        { label: "CV Editing", detail: ["10 sections", "Drag-and-drop", "Live preview"] },
+        {
+          label: "Pure Engines",
+          detail: ["ATS score 0–100", "Job-match keywords", "Client-side"],
+          emphasis: true,
+        },
+        {
+          label: "AI Assist (opt-in)",
+          detail: ["6 serverless routes", "5 providers via env", "Human review gate"],
+        },
+        { label: "Render Engine", detail: ["3 layout engines", "13 template skins", "A4 scaling"] },
+        { label: "Output", detail: ["Selectable-text PDF", "Supabase sync", "Cover letters"] },
+      ],
+      datasets: [],
+      results: [
+        { label: "Templates", value: "13", hint: "ATS-safe skins over three layout engines." },
+        { label: "CV Sections", value: "10", hint: "Plus user-defined custom sections." },
+        { label: "ATS Score", value: "0–100", hint: "Explainable, fully offline rubric." },
+        { label: "AI Tools", value: "5", hint: "Each gated by an explicit review step." },
+        { label: "AI Providers", value: "5", hint: "OpenAI, Claude, Gemini, Groq, OpenRouter." },
+        { label: "PDF Dependencies", value: "0", hint: "Print-CSS export with selectable text." },
+        { label: "Autosave Debounce", value: "800 ms", hint: "Debounced Supabase JSONB sync." },
+      ],
+      challenges: [
+        {
+          title: "Selectable text without PDF libraries",
+          body: "jsPDF and html2canvas produce image-like or broken text layers; solving export with pure print CSS plus A4 transform scaling kept the text selectable and removed the dependencies entirely.",
+        },
+        {
+          title: "One code path, five AI providers",
+          body: "Provider APIs differ in auth, request shape, and response envelope; an OpenAI-compatible dialect with native Claude and Gemini adapters reduced switching providers to two env vars.",
+        },
+        {
+          title: "Keeping the model honest",
+          body: "Prompt ground rules explicitly forbid inventing employers, degrees, metrics, or achievements — the model may only rephrase what the candidate supplied, which matters most on high-stakes documents.",
+        },
+        {
+          title: "Secrets out of the client bundle",
+          body: "Every AI call routes through same-origin serverless functions, so no provider key is ever bundled into frontend JavaScript — while the offline engines keep working with the backend absent.",
+        },
+        {
+          title: "Two honest persistence modes",
+          body: "Guest CVs are intentionally session-only so the zero-backend promise stays truthful, while signed-in CVs autosave to Supabase — two modes that must never confuse the user about where their data lives.",
+        },
+      ],
+      lessons: [
+        "Pure functions make explainable features testable — the ATS and job-match engines carry no React and stayed easy to verify.",
+        "One render engine plus CSS skins scales to 13 templates without duplicating a single layout.",
+        "Human-in-the-loop turns AI from a liability into a copilot — a review gate is what makes generated text safe to ship.",
+        "Env-var provider switching beats hardcoding a vendor — the backend survived five providers with zero code changes.",
+        "Print CSS can replace entire PDF libraries when your document is already HTML.",
+        "Design the no-backend path first — it forces clean separation and gives every visitor a working product with zero setup.",
+      ],
+    },
+  },
+  {
     slug: "workout-tracker",
     title: "Workout Tracker",
     category: "Mobile",
