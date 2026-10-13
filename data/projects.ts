@@ -106,14 +106,15 @@ export const projects: Project[] = [
       "PyTorch",
       "Hugging Face",
     ],
-    image: asset("/general images/ShieldAI Phishing Detection Workspace.png"),
+    image: asset("/general images/phishing attack detection platform.png"),
     imageAlt:
-      "Laptop on a desk showing a ShieldAI phishing detection dashboard concept: an email analysis panel with a sample message, a red 'Phishing Detected' verdict with a confidence score, and an LLM + RAG explanation listing detected phishing indicators.",
+      "Concept art for an AI phishing email detection platform: a glowing shield containing a brain and the words 'AI Phishing Email Detection' at the centre, a red phishing email hanging from a fish hook on the left, an inbox with green shield checkmarks on the right, and feature panels for Email Analysis, ModernBERT Multi-Expert AI, URL & Domain Intelligence, and Header & Authentication Checks.",
     year: "2026",
     featured: true,
     highlight: "hero",
     github: null,
     demo: null,
+    document: asset("/files/Final Project.docx"),
     caseStudy: {
       summary:
         "A hierarchical two-stage phishing text classifier: a fast TF-IDF + Logistic Regression baseline filters easy samples while BERT + Logistic Regression refines the hard ones, with residual errors staged for future RAG and LLM work.",
