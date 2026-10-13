@@ -46,10 +46,10 @@ export const education: EducationEntry[] = [
       "Networking",
     ],
     graduationProject: {
-      title: "Phishing Email / URL Detection",
+      title: "AI-Powered Phishing Email Detection",
       description:
-        "A graduation project building a detection system for phishing emails and malicious URLs using natural language processing and machine learning.",
-      supervisor: null,
+        "A graduation project building an AI-powered phishing email detection system using a ModernBERT multi-expert architecture fused by XGBoost, delivered across a web app, Chrome extension, Gmail/Outlook deep scan, and Telegram bot.",
+      supervisor: "Dr. Mohammad Al-Hammouri",
       link: null,
     },
   },
