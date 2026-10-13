@@ -75,8 +75,14 @@ export interface Project {
   imageAlt: string;
   year: string;
   featured: boolean;
-  /** Optional hero treatment in the projects grid (spans full width, elevated design). */
-  highlight?: "hero";
+  /**
+   * Optional cinematic showcase treatment: a full-width banner with a
+   * dedicated panoramic background image and minimal foreground content.
+   */
+  showcase?: {
+    image: string;
+    blurb: string;
+  };
   /** Repository URL. null = falls back to the GitHub profile link. */
   github: string | null;
   demo: string | null;
@@ -115,7 +121,11 @@ export const projects: Project[] = [
       "Concept art for an AI phishing email detection platform: a glowing shield containing a brain and the words 'AI Phishing Email Detection' at the centre, a red phishing email hanging from a fish hook on the left, an inbox with green shield checkmarks on the right, and feature panels for Email Analysis, ModernBERT Multi-Expert AI, URL & Domain Intelligence, and Header & Authentication Checks.",
     year: "2026",
     featured: true,
-    highlight: "hero",
+    showcase: {
+      image: asset("/general images/AI Phishing Defense Pipeline.png"),
+      blurb:
+        "An AI-powered phishing email detection system combining three specialized ModernBERT experts, XGBoost fusion, email authentication, and URL intelligence to deliver explainable security assessments.",
+    },
     github: null,
     demo: null,
     document: asset("/files/Final Project.docx"),

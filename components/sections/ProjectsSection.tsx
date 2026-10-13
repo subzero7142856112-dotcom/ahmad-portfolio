@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { ProjectCard } from "@/components/projects/ProjectCard";
+import { ProjectShowcase } from "@/components/projects/ProjectShowcase";
 import { IconArrowRight } from "@/components/icons";
 
 export function ProjectsSection() {
@@ -63,10 +64,14 @@ export function ProjectsSection() {
           {visible.map((project, index) => (
             <li
               key={project.slug}
-              className={`animate-fade-up ${project.highlight === "hero" ? "sm:col-span-2" : ""}`}
+              className={`animate-fade-up ${project.showcase ? "sm:col-span-2" : ""}`}
               style={{ animationDelay: `${index * 80}ms` }}
             >
-              <ProjectCard project={project} />
+              {project.showcase ? (
+                <ProjectShowcase project={project} />
+              ) : (
+                <ProjectCard project={project} />
+              )}
             </li>
           ))}
         </ul>
