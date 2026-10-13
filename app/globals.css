@@ -529,6 +529,56 @@
     cursor: none !important;
   }
 
+  /* ---------- ShieldAI showcase: starfield ---------- */
+  @keyframes shield-star-twinkle {
+    0%,
+    100% {
+      opacity: 0.15;
+      transform: scale(0.7);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1);
+    }
+  }
+  @keyframes shield-star-drift {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, -36px, 0);
+    }
+  }
+  .shield-showcase-stars {
+    position: absolute;
+    inset: 0;
+    z-index: -5;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .shield-showcase-stars span {
+    position: absolute;
+    display: block;
+    width: 2px;
+    height: 2px;
+    border-radius: 999px;
+    background: #e6f1ff;
+    box-shadow: 0 0 6px 1px rgba(34, 211, 238, 0.35);
+    opacity: 0.15;
+    animation:
+      shield-star-twinkle var(--dur, 3s) ease-in-out var(--delay, 0s) infinite,
+      shield-star-drift var(--drift, 9s) linear var(--delay, 0s) infinite;
+    will-change: opacity, transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shield-showcase-stars span {
+      animation: none !important;
+      opacity: 0.4;
+      will-change: auto;
+    }
+  }
+
   /* ---------- Section rhythm ---------- */
   .section {
     @apply relative scroll-mt-24 py-16 md:py-20;

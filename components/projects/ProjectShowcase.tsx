@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Project } from "@/data/projects";
 import { IconArrowRight, IconShield } from "@/components/icons";
+import { ShieldShowcaseStars } from "@/components/projects/ShieldShowcaseStars";
 
 interface ProjectShowcaseProps {
   project: Project;
@@ -19,6 +20,8 @@ export function ProjectShowcase({ project }: ProjectShowcaseProps) {
         aria-hidden="true"
         className="absolute inset-0 -z-10 h-full w-full object-cover object-center transition-transform duration-700 ease-smooth motion-reduce:group-hover:scale-100 group-hover:scale-[1.04]"
       />
+      {/* Twinkling starfield — sits under the scrim so it stays a subtle accent */}
+      <ShieldShowcaseStars count={46} />
       {/* Directional scrims: bottom-up on mobile, left-in on desktop — keeps the central architecture visible */}
       <span
         aria-hidden="true"
